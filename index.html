@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Mon Site Gamer Pro</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #0b0b0b;
+            color: #e0e0e0;
+            transition: all 0.5s ease;
+        }
+
+        header {
+            background: linear-gradient(90deg, #ff0000, #6400ff, #0077ff);
+            padding: 40px;
+            text-align: center;
+            color: white;
+            font-size: 32px;
+            text-shadow: 0 0 15px #ff0000, 0 0 15px #6400ff, 0 0 15px #0077ff;
+            transition: all 0.5s ease;
+        }
+
+        nav {
+            background: #111;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            padding: 15px;
+            border-bottom: 2px solid #ff0000;
+            transition: all 0.5s ease;
+        }
+
+        nav a {
+            color: white;
+            font-weight: bold;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: #ff4d4d;
+            text-shadow: 0 0 8px #ff0000, 0 0 8px #6400ff;
+        }
+
+        section {
+            max-width: 900px;
+            margin: 40px auto;
+            background: #161616;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(255,0,0,0.4), 0 0 20px rgba(100,0,255,0.4), 0 0 20px rgba(0,119,255,0.4);
+            transition: all 0.5s ease;
+        }
+
+        button {
+            padding: 10px 20px;
+            background: linear-gradient(90deg, #ff0000, #6400ff, #0077ff);
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+            color: white;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            filter: brightness(1.2);
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            width: 200px;
+            margin-right: 10px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #111;
+            color: #888;
+            margin-top: 50px;
+            transition: all 0.5s ease;
+        }
+
+        /* Styles Mode Pro */
+        .pro-mode header {
+            text-shadow: 0 0 30px #ff0000, 0 0 30px #6400ff, 0 0 30px #0077ff;
+        }
+        .pro-mode section {
+            box-shadow: 0 0 40px rgba(255,0,0,0.6), 0 0 40px rgba(100,0,255,0.6), 0 0 40px rgba(0,119,255,0.6);
+            transform: scale(1.02);
+        }
+        .pro-mode body {
+            background: #050505;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>🔥 Mon Site Gamer-Pro 🔥</h1>
+    <p>Style e-sport multicolore, structure professionnelle.</p>
+</header>
+
+<nav>
+    <a href="#accueil">Accueil</a>
+    <a href="#portfolio">Portfolio</a>
+    <a href="#gaming">Gaming</a>
+    <a href="#services">Services</a>
+    <a href="#contact">Contact</a>
+</nav>
+
+<section id="accueil">
+    <h2>Accueil</h2>
+    <p>Bienvenue dans mon espace. Mix parfait entre le gaming et le business avec des néons rouges, violets et bleus 🌈🔥.</p>
+</section>
+
+<section id="portfolio">
+    <h2>Portfolio</h2>
+    <p>Projets, compétences et réalisations. On reste pro tout en gardant un style gamer agressif et coloré.</p>
+</section>
+
+<section id="gaming">
+    <h2>Gaming Zone</h2>
+    <p>Univers gamer, screenshots, créations, jeux favoris… Ici, c’est l’arène multicolore 🎮🌈.</p>
+</section>
+
+<section id="services">
+    <h2>Services</h2>
+    <p>Création de sites, projets techniques, aide et développement. Style pro + gamer partout.</p>
+</section>
+
+<section id="contact">
+    <h2>Contact</h2>
+    <button onclick="alert('Merci ! Je reviendrai vers toi 🚀')">Me contacter</button>
+</section>
+
+<!-- Section Mode Pro -->
+<section style="text-align:center; margin:50px;">
+    <h3>Mode Pro 🔥</h3>
+    <p>Active toutes les fonctionnalités premium :</p>
+    <button onclick="startFreeTrial()">Essai gratuit 7 jours</button>
+    <button onclick="payProDiscord()">S’abonner 23€/mois via Discord</button>
+    <p style="margin-top:20px;">Ou entre le code secret familial pour un accès gratuit :</p>
+    <input type="text" id="proCode" placeholder="Code secret familial" />
+    <button onclick="checkProCode()">Activer Mode Pro Gratuit</button>
+</section>
+
+<footer>
+    © 2025 - Site Gamer-Pro Multicolore | Rouge, Violet, Bleu | Style et sérieux 🔥
+</footer>
+
+<script>
+    const secretCode = "ANEHO";
+    const discordLink = "https://discord.gg/UxAkYJAdk8"; // Lien de paiement Discord
+
+    // Activation Mode Pro via code familial
+    function checkProCode() {
+        const codeInput = document.getElementById('proCode').value;
+        if(codeInput === secretCode){
+            document.body.classList.add('pro-mode');
+            alert('✅ Mode Pro activé gratuitement pour ta famille ! 💎');
+        } else {
+            alert('❌ Code incorrect.');
+        }
+    }
+
+    // Activation Mode Pro via Discord (paiement)
+    function payProDiscord() {
+        const confirmPay = confirm("Voulez-vous activer le Mode Pro pour 23€/mois via Discord ?");
+        if(confirmPay){
+            window.open(discordLink, "_blank");
+            document.body.classList.add('pro-mode');
+            alert('✅ Mode Pro activé ! Merci pour votre abonnement 💎');
+        }
+    }
+
+    // Essai gratuit 7 jours
+    function startFreeTrial() {
+        document.body.classList.add('pro-mode');
+        alert("🎉 Essai gratuit de 7 jours activé ! Profite du Mode Pro avant de t'abonner !");
+        // Ici on peut ajouter un timer pour finir l'essai automatiquement
+    }
+</script>
+
+</body>
+</html>

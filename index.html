@@ -10,6 +10,7 @@
             background: #000;
             color: #eee;
             transition: background 0.5s ease;
+            overflow-x: hidden;
         }
 
         header { background: #111; padding: 40px; text-align: center; font-size: 32px; }
@@ -43,27 +44,25 @@
 
         input[type="text"], input[type="number"], select {
             padding: 10px; border-radius: 5px; border: none; width: 220px; margin-right: 10px;
+            background: #222; color: white;
         }
 
         footer { text-align: center; padding: 20px; background: #111; color: #888; margin-top: 50px; }
 
-        /* --- LE NOUVEAU RGB EN DÉGRADÉ (GRADIENT) --- */
+        /* --- LE VRAI DÉGRADÉ RGB FIXÉ --- */
         body.pro-mode {
-            /* Création du dégradé arc-en-ciel */
-            background: linear-gradient(120deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
-            /* On zoome dans le dégradé pour que l'animation soit fluide */
-            background-size: 400% 400%;
-            /* L'animation fait bouger le dégradé */
-            animation: gradientScroll 15s ease infinite;
+            /* On affiche plusieurs couleurs en même temps pour un vrai dégradé */
+            background: linear-gradient(120deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000) !important;
+            /* Taille réduite à 200% pour voir le mélange des couleurs */
+            background-size: 200% 200% !important;
+            animation: gradientScroll 4s linear infinite !important;
         }
 
-        .pro-mode section {
-            box-shadow: 0 0 20px rgba(255,255,255,0.4);
-            transform: scale(1.01);
+        .pro-mode section { 
+            box-shadow: 0 0 20px rgba(255,255,255,0.4); 
             border: 1px solid rgba(255,255,255,0.2);
         }
 
-        /* Animation qui déplace le fond d'écran */
         @keyframes gradientScroll {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
@@ -87,15 +86,15 @@
 
 <section id="accueil">
     <h2>Accueil</h2>
-    <p>Bienvenue dans mon espace. Mélange parfait entre gaming et business.</p>
+    <p>Bienvenue dans mon espace. Mélange parfait entre gaming et business avec un style élégant.</p>
 </section>
 
 <section id="business" style="text-align:center;">
     <h2>Zone Business</h2>
     <div class="flex-container">
-        <div class="card"><h3>Consulting</h3><p>Conseils personnalisés.</p></div>
-        <div class="card"><h3>Création Web</h3><p>Design et animations.</p></div>
-        <div class="card"><h3>Support Technique</h3><p>Solutions rapides.</p></div>
+        <div class="card"><h3>Consulting</h3><p>Conseils personnalisés pour vos projets.</p></div>
+        <div class="card"><h3>Création Web</h3><p>Sites web, design et animations.</p></div>
+        <div class="card"><h3>Support</h3><p>Aide et solutions techniques rapides.</p></div>
     </div>
 </section>
 
@@ -105,7 +104,7 @@
 
     <h3>Vérification d'âge</h3>
     <input type="number" id="ageCheck" placeholder="Ton âge" />
-    <button onclick="checkAge()">Valider</button>
+    <button onclick="checkAge()">Vérifier</button>
     <p id="ageResult"></p>
 
     <h3>Quiz Sécurité</h3>
@@ -123,23 +122,63 @@
 
 <section style="text-align:center; border: 2px dashed #444;">
     <h3>Mode Pro</h3>
-    <p>Activez le fond animé RGB (Dégradé) :</p>
-    <button onclick="startFreeTrial()">Essai gratuit 7 jours</button>
+    <p>Activez le fond arc-en-ciel (Dégradé RGB animé) :</p>
+    <button onclick="startFreeTrial()" style="background: #ff4d4d; margin-bottom: 10px;">ACTIVER MON ESSAI GRATUIT</button>
+    <br>
     <button onclick="payProDiscord()">S’abonner 23€/mois via Discord</button>
-
-    <p style="margin-top:20px;">Ou entre le code secret familial :</p>
-    <input type="text" id="proCode" placeholder="Code secret familial" />
-    <button onclick="checkProCode()">Activer Mode Pro Gratuit</button>
+    
+    <p style="margin-top:20px;">Ou code secret familial :</p>
+    <input type="text" id="proCode" placeholder="Code secret" />
+    <button onclick="checkProCode()">Activer</button>
 </section>
 
-<footer>© 2025 - menounk-tech</footer>
+<footer>© 2025 menounk-tech - Propulsé par GitHub</footer>
 
 <script>
-    // Tes données d'origine
+    // Configuration
     const secretCode = "ANEHO";
     const discordLink = "https://discord.gg/UxAkYJAdk8";
     const games = ["Roblox", "Fortnite", "Rocket League", "Marvel Rivals", "Fall Guys"];
 
-    // Ton système de code familial
+    // Activation du Mode Pro
     function checkProCode() {
-        const codeInput = document.getElementById('proCode').
+        if(document.getElementById('proCode').value === secretCode){
+            document.body.classList.add('pro-mode');
+            alert('Mode Pro activé gratuitement !');
+        } else { alert('Code incorrect.'); }
+    }
+
+    function startFreeTrial() {
+        document.body.classList.add('pro-mode');
+        alert("Essai gratuit activé !");
+    }
+
+    function payProDiscord() {
+        if(confirm("S'abonner via Discord ?")){
+            window.open(discordLink, "_blank");
+            document.body.classList.add('pro-mode');
+        }
+    }
+
+    // Sécurité et Jeux
+    function checkAge(){
+        let age = document.getElementById("ageCheck").value;
+        if(age >= 14 && age <= 30){
+            alert("Accès interdit pour ta tranche d'âge !");
+            document.body.innerHTML = "<h1 style='color:red;text-align:center;margin-top:100px;'>Accès interdit.</h1>";
+        } else { document.getElementById("ageResult").innerHTML = "Accès autorisé"; }
+    }
+
+    function securityCheck(){
+        if(document.getElementById("quiz").value === "ok") alert("Bienvenue !");
+        else { alert("Banni !"); window.location.href = "https://google.com"; }
+    }
+
+    function showGames(){
+        const div = document.getElementById("gamesList");
+        div.style.display = "block";
+        div.innerHTML = games.map(g => `<div style='background:#222;padding:10px;margin:5px;border-radius:5px;'>${g}</div>`).join('');
+    }
+</script>
+</body>
+</html>

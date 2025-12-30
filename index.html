@@ -27,7 +27,7 @@
             box-shadow: 0 0 10px #000;
         }
 
-        .card { background:#111; padding:20px; margin:10px; border-radius:10px; width:250px; box-shadow:0 0 5px #000; }
+        .card { background:#111; padding:20px; margin:10px; border-radius:10px; width:250px; box-shadow:0 0 5px #000; border: 1px solid #333; }
         .flex-container { display:flex; justify-content:space-around; margin-top:20px; flex-wrap:wrap; }
 
         button {
@@ -68,7 +68,9 @@
         }
     </style>
 </head>
-<body onload="checkSavedProStatus()"> <header>
+<body onload="checkSavedProStatus()">
+
+<header>
     <h1>Mon Site Gamer-Pro</h1>
     <p>Style sobre et professionnel</p>
 </header>
@@ -83,6 +85,15 @@
 <section id="accueil">
     <h2>Accueil</h2>
     <p>Bienvenue dans mon espace. Mélange parfait entre gaming et business.</p>
+</section>
+
+<section id="business" style="text-align:center;">
+    <h2>Zone Business</h2>
+    <div class="flex-container">
+        <div class="card"><h3>Consulting</h3><p>Conseils personnalisés pour vos projets.</p></div>
+        <div class="card"><h3>Création Web</h3><p>Design, sites web et animations.</p></div>
+        <div class="card"><h3>Support</h3><p>Solutions techniques et aide rapide.</p></div>
+    </div>
 </section>
 
 <section id="gaming">
@@ -126,31 +137,24 @@
     const myDiscordPseudo = "miroulepro";
     const games = ["Roblox", "Fortnite", "Rocket League", "Marvel Rivals", "Fall Guys"];
 
-    // --- SYSTÈME DE SAUVEGARDE ---
-    
-    // Cette fonction s'exécute dès que la page s'ouvre
+    // Sauvegarde
     function checkSavedProStatus() {
-        const isPro = localStorage.getItem('isProMember');
-        if (isPro === 'true') {
+        if (localStorage.getItem('isProMember') === 'true') {
             document.body.classList.add('pro-mode');
-            console.log("Mode Pro chargé depuis la mémoire !");
         }
     }
 
-    // On appelle cette fonction quand on devient Pro
     function activatePro() {
         document.body.classList.add('pro-mode');
-        localStorage.setItem('isProMember', 'true'); // On enregistre dans la mémoire
+        localStorage.setItem('isProMember', 'true');
     }
 
-    // Pour tester, on peut redevenir non-pro
     function resetProMode() {
         localStorage.removeItem('isProMember');
-        location.reload(); // Recharge la page pour appliquer
+        location.reload();
     }
 
-    // --- TES FONCTIONS MISES À JOUR ---
-
+    // Fonctions
     function contactDiscord() {
         if (document.body.classList.contains('pro-mode')) {
             document.getElementById('discordResult').innerHTML = "Mon pseudo Discord : " + myDiscordPseudo;
@@ -162,24 +166,23 @@
 
     function checkProCode() {
         if(document.getElementById('proCode').value === secretCode){
-            activatePro(); // Utilise la sauvegarde
+            activatePro();
             alert('Mode Pro activé et sauvegardé !');
         } else { alert('Code incorrect.'); }
     }
 
     function startFreeTrial() {
-        activatePro(); // Utilise la sauvegarde
-        alert("Essai gratuit activé et sauvegardé !");
+        activatePro();
+        alert("Essai gratuit activé !");
     }
 
     function payProDiscord() {
         if(confirm("S'abonner via Discord ?")){
             window.open(discordLink, "_blank");
-            activatePro(); // Utilise la sauvegarde
+            activatePro();
         }
     }
 
-    // Le reste du code (âge, jeux) ne change pas
     function checkAge(){
         let age = document.getElementById("ageCheck").value;
         if(age >= 14 && age <= 30){
@@ -194,5 +197,7 @@
         div.innerHTML = games.map(g => `<div style='background:#222;padding:10px;margin:5px;border-radius:5px;'>${g}</div>`).join('');
     }
 </script>
+</body>
+</html>
 </body>
 </html>

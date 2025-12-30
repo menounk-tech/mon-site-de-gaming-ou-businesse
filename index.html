@@ -2,217 +2,207 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>ShadowByte | Accueil</title>
+    <title>ShadowByte | Élite Tech & Gaming</title>
     <style>
-        /* STYLE BASÉ SUR TES CAPTURES D'ÉCRAN */
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #000;
-            color: white;
-            overflow-x: hidden;
+        /* DESIGN GLOBAL BASÉ SUR TES CAPTURES */
+        body { 
+            margin: 0; 
+            font-family: 'Segoe UI', Arial, sans-serif; 
+            background: #000; 
+            color: #eee; 
+            transition: 0.5s; 
+            overflow-x: hidden; 
         }
 
-        /* FOND DÉGRADÉ ACTIF EN MODE PRO */
+        /* FOND DÉGRADÉ PRO */
         body.pro-mode {
-            background: linear-gradient(90deg, #ff4e00, #ffea00, #7cfc00);
-            background-size: 400% 400%;
-            animation: moveGradient 5s infinite alternate;
+            background: linear-gradient(90deg, #ff4e00, #ffea00, #7cfc00) !important;
+            background-size: 400% 400% !important;
+            animation: moveGradient 5s infinite alternate !important;
         }
         @keyframes moveGradient {
             0% { background-position: 0% 50%; }
             100% { background-position: 100% 50%; }
         }
 
-        header { background: #111; padding: 20px; text-align: center; border-bottom: 1px solid #333; }
-        nav { background: #111; padding: 10px; text-align: center; border-bottom: 1px solid #333; position: sticky; top: 0; z-index: 1000; }
-        nav a { color: white; text-decoration: none; margin: 0 15px; font-weight: bold; font-size: 18px; }
+        header { background: #0a0a0a; padding: 40px; text-align: center; border-bottom: 2px solid #5865F2; }
+        header h1 { font-size: 42px; margin: 0; color: #fff; letter-spacing: 3px; text-transform: uppercase; }
 
-        section {
-            max-width: 900px;
-            margin: 30px auto;
-            background: #0f0f0f; /* BLOC NOIR COMME SUR L'IMAGE */
-            padding: 40px;
-            border-radius: 15px;
+        nav { background: #111; display: flex; justify-content: center; gap: 30px; padding: 15px; border-bottom: 1px solid #333; position: sticky; top: 0; z-index: 1000; }
+        nav a { color: #888; font-weight: bold; text-decoration: none; transition: 0.3s; text-transform: uppercase; font-size: 13px; }
+        nav a:hover { color: #5865F2; }
+
+        section { 
+            max-width: 950px; 
+            margin: 40px auto; 
+            background: #0f0f0f; /* BLOCS NOIRS DES IMAGES */
+            padding: 35px; 
+            border-radius: 15px; 
+            border: 1px solid #222; 
         }
 
-        h2 { font-size: 32px; margin-top: 0; }
-        .btn-check { background: #333; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-weight: bold; transition: 0.3s; }
-        .btn-check:hover { background: #555; }
-        input { background: #222; border: 1px solid #333; color: white; padding: 10px; border-radius: 5px; width: 200px; }
+        /* BUSINESS GRID */
+        .biz-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 20px; }
+        .biz-card { background: #181818; padding: 20px; border-radius: 12px; border-left: 4px solid #5865F2; text-decoration: none; color: inherit; transition: 0.3s; }
+        .biz-card:hover { transform: translateY(-5px); border-left-color: #7cfc00; background: #202020; }
+        .biz-card h3 { color: #5865F2; margin-top: 0; }
 
-        /* ZONE BUSINESS AVEC LIENS */
-        .biz-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
-        .biz-card { background: #1a1a1a; padding: 20px; border-radius: 10px; text-decoration: none; color: white; border-left: 4px solid #5865F2; transition: 0.3s; }
-        .biz-card:hover { transform: translateY(-5px); background: #222; border-left: 4px solid #7cfc00; }
+        /* STATUS BOX */
+        #status-box { background: #141414; padding: 25px; border-radius: 12px; border: 1px solid #333; text-align: center; margin-bottom: 30px; }
+        .status-dot { height: 14px; width: 14px; border-radius: 50%; display: inline-block; margin-right: 10px; background: #747f8d; box-shadow: 0 0 5px #000; }
+        .online-dot { background: #43b581 !important; box-shadow: 0 0 15px #43b581 !important; }
 
-        /* STATUT DISCORD AUTO (OPTION 2) */
-        #status-box { text-align: center; border: 1px solid #333; padding: 15px; border-radius: 10px; margin-bottom: 20px; }
-        .status-dot { height: 12px; width: 12px; border-radius: 50%; display: inline-block; margin-right: 5px; }
+        /* BOUTONS ET INPUTS */
+        .btn-main { padding: 12px 25px; background: #333; border: none; cursor: pointer; font-size: 16px; border-radius: 6px; color: white; font-weight: bold; transition: 0.2s; }
+        .btn-main:hover { background: #444; transform: scale(1.02); }
+        .btn-red { background: #ff4b4b; width: 100%; max-width: 350px; padding: 18px; margin-bottom: 15px; }
+        .btn-discord { background: #5865F2; width: 100%; padding: 15px; font-size: 18px; }
+        
+        input { padding: 12px; border-radius: 6px; border: 1px solid #333; background: #222; color: white; width: 220px; outline: none; }
+        input:focus { border-color: #5865F2; }
 
-        /* BOUTON DISCORD IDENTIQUE À TON IMAGE */
-        .btn-discord { background: #5865f2; color: white; border: none; padding: 15px; border-radius: 8px; width: 100%; font-size: 18px; font-weight: bold; cursor: pointer; transition: 0.3s; }
-        .btn-discord:hover { background: #4752c4; }
+        .game-item { background: #1a1a1a; padding: 12px; border-radius: 8px; margin: 8px 0; border: 1px solid #222; transition: 0.3s; }
+        .game-item:hover { border-color: #7cfc00; color: #7cfc00; }
 
-        .game-list-item { background: #1a1a1a; padding: 10px; margin: 5px 0; border-radius: 5px; border-left: 3px solid #7cfc00; }
+        footer { text-align: center; padding: 50px; color: #444; font-size: 12px; letter-spacing: 2px; }
     </style>
 </head>
 <body onload="checkSavedProStatus(); startDiscordStatus();">
 
 <header>
     <h1>SHADOWBYTE</h1>
+    <p style="color: #5865F2; letter-spacing: 4px; font-size: 13px; margin-top: 10px;">PREMIUM TECH & GAMING SOLUTIONS</p>
 </header>
 
 <nav>
     <a href="#accueil">Accueil</a>
-    <a href="#business">Business</a>
+    <a href="#business">Services</a>
     <a href="#gaming">Gaming</a>
-    <a href="#contact">Contact</a>
+    <a href="#pro-zone">Accès Pro</a>
 </nav>
 
 <section id="accueil">
-    <h2>Accueil</h2>
-    <p>Bienvenue dans l'univers de ShadowByte. Expert en Gaming et solutions Business.</p>
+    <h2>Espace Personnel</h2>
+    <p>Bienvenue sur l'interface officielle de ShadowByte. Cette plateforme regroupe mes activités professionnelles et mes performances gaming.</p>
 </section>
 
 <section id="business">
-    <h2>Business Services</h2>
+    <h2>ShadowByte Business</h2>
     <div class="biz-grid">
-        <a href="https://discord.gg/UxAkYJAdk8" target="_blank" class="biz-card"><h3>Consulting</h3><p>Cliquez pour commander</p></a>
-        <a href="https://discord.gg/UxAkYJAdk8" target="_blank" class="biz-card"><h3>Dev Web</h3><p>Cliquez pour commander</p></a>
-        <a href="https://discord.gg/UxAkYJAdk8" target="_blank" class="biz-card"><h3>Tech Support</h3><p>Cliquez pour commander</p></a>
+        <a href="https://discord.gg/UxAkYJAdk8" target="_blank" class="biz-card">
+            <h3>📈 Consulting</h3>
+            <p>Optimisation de projets et stratégie digitale. Cliquez pour commander.</p>
+        </a>
+        <a href="https://discord.gg/UxAkYJAdk8" target="_blank" class="biz-card">
+            <h3>💻 Développement</h3>
+            <p>Création de sites et d'outils sur mesure. Cliquez pour commander.</p>
+        </a>
     </div>
 </section>
 
 <section id="gaming">
     <h2>Gaming Zone</h2>
-
+    
     <div id="status-box">
-        <p><span id="dot" style="background:#747f8d" class="status-dot"></span> <span id="statut-txt">ShadowByte est Hors-ligne</span></p>
-        <p id="actuel-jeu" style="color:#7cfc00; font-weight:bold; font-size: 1.2em;"></p>
+        <p><span id="dot" class="status-dot"></span> <span id="statut-txt" style="font-weight: bold; letter-spacing: 1px;">SHADOW-NET OFFLINE</span></p>
+        <p id="actuel-jeu" style="color:#7cfc00; font-size: 22px; font-weight:bold; margin-top: 10px;"></p>
     </div>
 
-    <h3>Vérification d'âge</h3>
-    <input type="number" id="ageInput" placeholder="Ton âge">
-    <button class="btn-check" onclick="verifAge()">Vérifier</button>
-    <p id="ageReponse"></p>
+    <div style="background: #161616; padding: 20px; border-radius: 10px; margin-bottom: 25px;">
+        <h3 style="margin-top:0;">Vérification d'âge</h3>
+        <input type="number" id="ageInput" placeholder="Entrez votre âge">
+        <button class="btn-main" onclick="verifAge()">Vérifier</button>
+        <p id="ageReponse" style="margin-top:10px;"></p>
+    </div>
 
-    <br>
-    <h3 id="titre-jeux">Mes jeux (🔒 PRO)</h3>
-    <button class="btn-check" onclick="afficherJeux()">Voir mes jeux</button>
-    <div id="listeJeux" style="display:none; margin-top:20px;">
-        <div class="game-list-item">Roblox</div>
-        <div class="game-list-item">Fortnite</div>
-        <div class="game-list-item">Rocket League</div>
-        <div class="game-list-item">Marvel Rivals</div>
-        <div class="game-list-item">Fall Guys</div>
+    <h3 id="titre-jeux">Le Hall des Jeux de ShadowByte (🔒 PRO)</h3>
+    <button class="btn-main" onclick="afficherJeux()">Ouvrir le Catalogue</button>
+    <div id="listeJeux" style="display:none; margin-top:20px; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px;">
+        <div class="game-item">Roblox</div>
+        <div class="game-item">Fortnite</div>
+        <div class="game-item">Rocket League</div>
+        <div class="game-item">Marvel Rivals</div>
+        <div class="game-item">Fall Guys</div>
     </div>
 </section>
 
-<section id="contact" style="text-align:center;">
-    <button class="btn-discord" onclick="voirPseudo()">🔒 Pseudo Discord (Membres PRO)</button>
-    <p id="discordResult" style="margin-top:15px; color:#7cfc00; font-size:22px; font-weight:bold;"></p>
-</section>
-
-<section style="text-align:center;">
-    <h2 style="margin-bottom:10px;">Mode Pro</h2>
+<section id="pro-zone" style="text-align:center;">
+    <h2>Mode Pro</h2>
     <p>Le mode Pro restera activé sur cet ordinateur !</p>
+    
+    <button class="btn-main btn-red" onclick="activerPro()">ACTIVER MON ESSAI GRATUIT</button>
+    <br>
+    <button class="btn-main" style="width:100%; max-width:350px; background:#252525;" onclick="window.open('https://discord.gg/UxAkYJAdk8')">S’abonner 14€/mois via Discord</button>
+    
+    <p style="margin-top:30px; font-weight: bold;">Ou code secret familial :</p>
+    <input type="text" id="codeFamille" placeholder="Entrez le code">
+    <button class="btn-main" onclick="verifCode()">Activer</button>
 
-    <button onclick="activerPro()" style="background:#ff4b4b; color:white; border:none; padding:15px 30px; border-radius:8px; font-weight:bold; width:310px; cursor:pointer; font-size:16px;">ACTIVER MON ESSAI GRATUIT</button>
-    <br><br>
-    <button onclick="window.open('https://discord.gg/UxAkYJAdk8')" style="background:#2a2a2a; color:white; border:none; padding:15px 30px; border-radius:8px; font-weight:bold; width:310px; cursor:pointer; font-size:16px;">S’abonner 14€/mois via Discord</button>
+    <div style="margin-top: 40px; border-top: 1px solid #222; padding-top: 30px;">
+        <button class="btn-discord" onclick="voirPseudo()">🔒 Pseudo Discord (Membres PRO)</button>
+        <p id="discordResult" style="margin-top:20px; color:#7cfc00; font-size:24px; font-weight:bold;"></p>
+    </div>
 
-    <p style="margin-top:20px;">Ou code secret familial :</p> 
-    <input type="text" id="codeFamille" placeholder="ANEHO">
-    <button class="btn-check" onclick="verifCode()">Activer</button>
-
-    <br><br>
-    <button onclick="resetPro()" style="background:transparent; color:#555; border:none; cursor:pointer; font-size: 12px;">Réinitialiser (Devenir non-pro)</button>
+    <button onclick="resetPro()" style="margin-top:50px; background:transparent; border:none; color:#333; cursor:pointer; font-size:11px;">REINITIALISER LA SESSION</button>
 </section>
 
 <footer>
-    <p style="text-align:center; padding: 20px; color: #444;">© 2025 ShadowByte - Tous droits réservés</p>
+    <p>© 2025 SHADOWBYTE PROTOCOL | SECURED INTERFACE</p>
 </footer>
 
 <script>
-    const monID = "1282298642054025257"; // Ton ID Discord
+    const monID = "1282298642054025257"; // Ton identifiant Discord
 
-    // FONCTION STATUT LIVE AUTOMATIQUE
     async function startDiscordStatus() {
         async function refresh() {
             try {
                 const res = await fetch(`https://api.lanyard.rest/v1/users/${monID}`);
                 const data = await res.json();
-                const presence = data.data;
-                const dot = document.getElementById('dot');
+                if(data.success) {
+                    const p = data.data;
+                    const dot = document.getElementById('dot');
+                    const txt = document.getElementById('statut-txt');
+                    const gameTxt = document.getElementById('actuel-jeu');
 
-                if(presence.discord_status === "online") dot.style.background = "#43b581";
-                else if(presence.discord_status === "dnd") dot.style.background = "#f04747";
-                else if(presence.discord_status === "idle") dot.style.background = "#faa61a";
-                else dot.style.background = "#747f8d";
-
-                document.getElementById('statut-txt').innerText = "ShadowByte est " + presence.discord_status.toUpperCase();
-                
-                const jeu = presence.activities.find(a => a.type === 0);
-                document.getElementById('actuel-jeu').innerText = jeu ? "🎮 En train de jouer à : " + jeu.name : "Ne joue à rien pour le moment";
-            } catch(e) { console.log("Erreur de connexion Discord"); }
+                    if(p.discord_status !== "offline") {
+                        dot.className = "status-dot online-dot";
+                        txt.innerText = "SHADOW-NET ONLINE (" + p.discord_status.toUpperCase() + ")";
+                        const game = p.activities.find(a => a.type === 0);
+                        gameTxt.innerText = game ? "🎮 EN DIRECT SUR : " + game.name : "STATION EN VEILLE";
+                    } else {
+                        dot.className = "status-dot";
+                        txt.innerText = "SHADOW-NET OFFLINE";
+                        gameTxt.innerText = "";
+                    }
+                }
+            } catch(e) { console.log("Connexion Lanyard..."); }
         }
         refresh(); setInterval(refresh, 10000);
     }
 
-    // GESTION DU MODE PRO
-    function checkSavedProStatus() { 
-        if(localStorage.getItem('pro') === 'true') document.body.classList.add('pro-mode'); 
-    }
-    
-    function activerPro() { 
-        document.body.classList.add('pro-mode'); 
-        localStorage.setItem('pro', 'true'); 
-        alert("Mode Pro activé avec succès !"); 
-    }
-    
-    function resetPro() { 
-        localStorage.removeItem('pro'); 
-        location.reload(); 
-    }
+    function checkSavedProStatus() { if(localStorage.getItem('pro') === 'true') document.body.classList.add('pro-mode'); }
+    function activerPro() { document.body.classList.add('pro-mode'); localStorage.setItem('pro', 'true'); alert("Accès Pro activé !"); }
+    function resetPro() { localStorage.removeItem('pro'); location.reload(); }
     
     function verifCode() { 
-        if(document.getElementById('codeFamille').value === "ANEHO") { 
-            activerPro(); 
-        } else { 
-            alert("Code incorrect"); 
-        } 
+        if(document.getElementById('codeFamille').value === "ANEHO") activerPro(); 
+        else alert("Code erroné."); 
     }
 
-    // VÉRIFICATION D'ÂGE
     function verifAge() {
         let age = document.getElementById('ageInput').value;
-        if(age >= 14 && age <= 30) { 
-            document.body.innerHTML = "<h1 style='text-align:center; margin-top:100px; color:red;'>ACCÈS REFUSÉ (Tranche d'âge bloquée)</h1>"; 
-        }
-        else if(age === "") { alert("Veuillez entrer un âge"); }
-        else { document.getElementById('ageReponse').innerText = "✅ Accès autorisé"; }
+        if(age >= 14 && age <= 30) document.body.innerHTML = "<h1 style='color:red; text-align:center; margin-top:200px;'>ACCÈS INTERDIT : ZONE RESTREINTE</h1>";
+        else if(age !== "") document.getElementById('ageReponse').innerHTML = "<span style='color:#7cfc00'>✅ Accès autorisé</span>";
     }
 
-    // AFFICHAGE DES JEUX (LOCK PRO)
     function afficherJeux() {
-        if(document.body.classList.contains('pro-mode')) { 
-            document.getElementById('listeJeux').style.display = "block"; 
-        }
-        else { 
-            alert("Cette section est réservée aux membres PRO (14€/mois) !"); 
-            window.location.href = "#codeFamille";
-        }
+        if(document.body.classList.contains('pro-mode')) document.getElementById('listeJeux').style.display = "grid";
+        else { alert("Cette section nécessite un abonnement PRO (14€/mois)"); window.location.href = "#pro-zone"; }
     }
 
-    // AFFICHAGE PSEUDO (LOCK PRO)
     function voirPseudo() {
-        if(document.body.classList.contains('pro-mode')) { 
-            document.getElementById('discordResult').innerText = "Pseudo ShadowByte : miroulepro"; 
-        }
-        else { 
-            alert("Activez le mode PRO pour voir mon pseudo !"); 
-        }
+        if(document.body.classList.contains('pro-mode')) document.getElementById('discordResult').innerText = "Pseudo : miroulepro";
+        else alert("Veuillez activer le mode PRO pour voir le contact.");
     }
 </script>
 </body>

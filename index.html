@@ -47,21 +47,27 @@
 
         footer { text-align: center; padding: 20px; background: #111; color: #888; margin-top: 50px; }
 
-        /* --- CORRECTION BUG MODE PRO --- */
+        /* --- LE NOUVEAU RGB EN DÉGRADÉ (GRADIENT) --- */
         body.pro-mode {
-            animation: rgbBackground 10s linear infinite !important;
+            /* Création du dégradé arc-en-ciel */
+            background: linear-gradient(120deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+            /* On zoome dans le dégradé pour que l'animation soit fluide */
             background-size: 400% 400%;
+            /* L'animation fait bouger le dégradé */
+            animation: gradientScroll 15s ease infinite;
         }
 
-        .pro-mode section { box-shadow: 0 0 20px #fff; transform: scale(1.01); }
+        .pro-mode section {
+            box-shadow: 0 0 20px rgba(255,255,255,0.4);
+            transform: scale(1.01);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
 
-        @keyframes rgbBackground {
-            0% { background-color: #ff0000; }
-            20% { background-color: #ff7f00; }
-            40% { background-color: #ffff00; }
-            60% { background-color: #00ff00; }
-            80% { background-color: #0000ff; }
-            100% { background-color: #ff0000; }
+        /* Animation qui déplace le fond d'écran */
+        @keyframes gradientScroll {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
     </style>
 </head>
@@ -81,12 +87,11 @@
 
 <section id="accueil">
     <h2>Accueil</h2>
-    <p>Bienvenue dans mon espace. Mélange parfait entre gaming et business avec un style sobre et élégant.</p>
+    <p>Bienvenue dans mon espace. Mélange parfait entre gaming et business.</p>
 </section>
 
 <section id="business" style="text-align:center;">
     <h2>Zone Business</h2>
-    <p>Découvrez nos services professionnels : consulting, création de projets web, conseils techniques et stratégies.</p>
     <div class="flex-container">
         <div class="card"><h3>Consulting</h3><p>Conseils personnalisés.</p></div>
         <div class="card"><h3>Création Web</h3><p>Design et animations.</p></div>
@@ -97,7 +102,7 @@
 <section id="gaming">
     <h2>Gaming Zone</h2>
     <p>Pseudo Discord : <strong>miroulepro</strong></p>
-    
+
     <h3>Vérification d'âge</h3>
     <input type="number" id="ageCheck" placeholder="Ton âge" />
     <button onclick="checkAge()">Valider</button>
@@ -116,65 +121,25 @@
     <div id="gamesList" style="display:none; margin-top:20px;"></div>
 </section>
 
-<section id="contact">
-    <h2>Contact</h2>
-    <button onclick="alert('Merci ! Je reviendrai vers toi')">Me contacter</button>
-</section>
-
-<section style="text-align:center; margin:50px;">
+<section style="text-align:center; border: 2px dashed #444;">
     <h3>Mode Pro</h3>
-    <p>Activez le RGB :</p>
+    <p>Activez le fond animé RGB (Dégradé) :</p>
     <button onclick="startFreeTrial()">Essai gratuit 7 jours</button>
-    <button onclick="payProDiscord()">S’abonner via Discord</button>
-    <p>Ou code secret familial :</p>
-    <input type="text" id="proCode" placeholder="Code secret" />
-    <button onclick="checkProCode()">Activer</button>
+    <button onclick="payProDiscord()">S’abonner 23€/mois via Discord</button>
+
+    <p style="margin-top:20px;">Ou entre le code secret familial :</p>
+    <input type="text" id="proCode" placeholder="Code secret familial" />
+    <button onclick="checkProCode()">Activer Mode Pro Gratuit</button>
 </section>
 
-<footer>© 2025 - Site Gamer-Pro | Business et Gaming</footer>
+<footer>© 2025 - menounk-tech</footer>
 
 <script>
-const secretCode = "ANEHO";
-const discordLink = "https://discord.gg/UxAkYJAdk8";
-const games = ["Roblox", "Fortnite", "Rocket League", "Marvel Rivals", "Fall Guys"];
+    // Tes données d'origine
+    const secretCode = "ANEHO";
+    const discordLink = "https://discord.gg/UxAkYJAdk8";
+    const games = ["Roblox", "Fortnite", "Rocket League", "Marvel Rivals", "Fall Guys"];
 
-function checkProCode() {
-    if(document.getElementById('proCode').value === secretCode){
-        document.body.classList.add('pro-mode');
-        alert('Mode Pro activé !');
-    } else { alert('Code incorrect.'); }
-}
-
-function payProDiscord() {
-    if(confirm("S'abonner via Discord ?")){
-        window.open(discordLink, "_blank");
-        document.body.classList.add('pro-mode');
-    }
-}
-
-function startFreeTrial() {
-    document.body.classList.add('pro-mode');
-    alert("Essai gratuit activé !");
-}
-
-function checkAge(){
-    let age = document.getElementById("ageCheck").value;
-    if(age >= 14 && age <= 30){
-        alert("Accès interdit (14-30 ans) !");
-        document.body.innerHTML = "<h1 style='color:red;text-align:center;margin-top:100px;'>Accès interdit.</h1>";
-    } else { document.getElementById("ageResult").innerHTML = "Accès autorisé"; }
-}
-
-function securityCheck(){
-    if(document.getElementById("quiz").value === "ok") alert("Bienvenue !");
-    else { alert("Banni !"); window.location.href = "https://google.com"; }
-}
-
-function showGames(){
-    const div = document.getElementById("gamesList");
-    div.style.display = "block";
-    div.innerHTML = games.map(g => `<div style='background:#222;padding:10px;margin:5px;border-radius:5px;'>${g}</div>`).join('');
-}
-</script>
-</body>
-</html>
+    // Ton système de code familial
+    function checkProCode() {
+        const codeInput = document.getElementById('proCode').
